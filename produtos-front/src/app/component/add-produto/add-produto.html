@@ -1,0 +1,14 @@
+<div class="add-produto-container">
+	<h2>Adicionar Produto</h2>
+	<form (ngSubmit)="criarProduto()">
+		<div>
+		<label for="nome">Nome:</label>
+		<input type="text" id="nome" [ngModel]="novoProduto().nome" (ngModelChange)="atualizarNome($event)" name="nome" required />
+		</div>
+		<div>
+		<label for="preco">Preço:</label>
+		<input type="number" id="preco" [ngModel]="novoProduto().preco" (ngModelChange)="atualizarPreco($event)" name="preco" required />
+		</div>
+		<button type="submit">Adicionar</button>
+	</form>
+</div>
