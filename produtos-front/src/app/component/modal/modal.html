@@ -1,0 +1,56 @@
+<div class="modal-backdrop" (click)="fechar()">
+	<section
+		class="modal-dialog"
+		role="dialog"
+		aria-modal="true"
+		aria-labelledby="modal-title"
+		(click)="$event.stopPropagation()"
+	>
+		<header class="modal-header">
+			<h2 id="modal-title">Detalhes do produto</h2>
+			<button type="button" class="close-button" aria-label="Fechar" (click)="fechar()">&times;</button>
+		</header>
+
+		<div *ngIf="!modoEdicao()">
+			<p><strong>Nome:</strong> {{ produto().nome.charAt(0).toUpperCase() + produto().nome.slice(1) }}</p>
+			<p><strong>Preco:</strong> {{ produto().preco | currency:'BRL':'symbol':'1.2-2':'pt-BR' }}</p>
+
+			<button *ngIf="!mostrarAcoes()" type="button" (click)="exibirAcoes()">
+				Editar ou remover produto
+			</button>
+			<footer class="modal-actions" *ngIf="mostrarAcoes()">
+				<button type="button" (click)="editar()">Editar</button>
+				<button type="button" class="danger-button" (click)="remover()">Remover</button>
+			</footer>
+		</div>
+
+		<form *ngIf="modoEdicao()" (ngSubmit)="salvar()">
+			<label for="produto-nome">Nome</label>
+			<input
+				id="produto-nome"
+				type="text"
+				[(ngModel)]="produtoEditado.nome"
+				name="nome"
+				required
+			/>
+
+			<label for="produto-preco">Preco</label>
+			<input
+				id="produto-preco"
+				type="number"
+				[(ngModel)]="produtoEditado.preco"
+				name="preco"
+				min="0.01"
+				step="0.01"
+				required
+			/>
+
+			<p class="error-message" *ngIf="erro()">{{ erro() }}</p>
+
+			<footer class="modal-actions">
+				<button type="button" class="secondary-button" (click)="cancelarEdicao()">Cancelar</button>
+				<button type="submit">Salvar alteracoes</button>
+			</footer>
+		</form>
+	</section>
+</div>

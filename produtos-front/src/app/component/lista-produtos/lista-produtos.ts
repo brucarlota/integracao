@@ -2,9 +2,10 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit, signal } from '@angular/core';
 import { Produto } from '../../models/produto.model';
 import { ProdutosService } from '../../services/produtos.service';
+import { Modal } from '../modal/modal';
 
 @Component({
-  imports: [CommonModule],
+	imports: [CommonModule, Modal],
   selector: 'app-lista-produtos',
   styleUrl: './lista-produtos.css',
   templateUrl: './lista-produtos.html',
@@ -12,6 +13,7 @@ import { ProdutosService } from '../../services/produtos.service';
 export class ListaProdutos implements OnInit {
 	produtos = signal<Produto[]>([]);
 	erroCarregamento = signal('');
+	produtoSelecionado = signal<Produto | null>(null);
 
 	constructor(private produtosService: ProdutosService) { }
 
@@ -21,11 +23,15 @@ export class ListaProdutos implements OnInit {
 
 	removerProduto(id: number): void {
 		if (!window.confirm('Deseja remover este produto?')) {
-		return;
+			return;
 		}
 
-		this.produtosService.excluirProduto(id).subscribe(() => {
-		this.produtos.update(produtos => produtos.filter(produto => produto.id !== id));
+		this.produtosService.excluirProduto(id).subscribe({
+			next: () => {
+				this.produtos.update(produtos => produtos.filter(produto => produto.id !== id));
+				this.fecharModal();
+			},
+			error: () => this.erroCarregamento.set('Nao foi possivel remover o produto.'),
 		});
 	}
 
@@ -41,15 +47,19 @@ export class ListaProdutos implements OnInit {
 		});
 	}
 
-    editarProduto(id: number): void {
-        this.produtosService.buscarProdutoPorId(id).subscribe({
-            next: produto => {
-                // Aqui você pode fazer algo com o produto retornado, como exibir em um formulário de edição
-                console.log('Produto para edição:', produto);
-            },
-            error: () => {
-                console.error('Erro ao buscar o produto para edição.');
-            }
-        });
-    }
+	detalharProduto(id: number): void {
+		const produto = this.produtos().find(item => item.id === id);
+		this.produtoSelecionado.set(produto ?? null);
+	}
+
+	fecharModal(): void {
+		this.produtoSelecionado.set(null);
+	}
+
+	produtoSalvo(produtoAtualizado: Produto): void {
+		this.produtos.update(produtos =>
+			produtos.map(produto => produto.id === produtoAtualizado.id ? produtoAtualizado : produto)
+		);
+		this.fecharModal();
+	}
 }

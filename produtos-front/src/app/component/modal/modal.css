@@ -1,0 +1,89 @@
+.modal-backdrop {
+	position: fixed;
+	inset: 0;
+	z-index: 1000;
+	display: grid;
+	place-items: center;
+	padding: 1rem;
+	background: rgb(20 26 24 / 55%);
+}
+
+.modal-dialog {
+	width: min(100%, 28rem);
+	padding: 1.5rem;
+	border: 1px solid #d7ddd9;
+	border-radius: 8px;
+	background: #fff;
+	box-shadow: 0 1rem 3rem rgb(0 0 0 / 20%);
+}
+
+.modal-header,
+.modal-actions {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 0.75rem;
+}
+
+.modal-header {
+	margin-bottom: 1.25rem;
+}
+
+.modal-header h2 {
+	margin: 0;
+	font-size: 1.25rem;
+}
+
+.modal-dialog form {
+	display: grid;
+	gap: 0.65rem;
+}
+
+.modal-dialog input {
+	width: 100%;
+	min-height: 2.5rem;
+	box-sizing: border-box;
+	padding: 0.5rem 0.65rem;
+	border: 1px solid #aab6af;
+	border-radius: 4px;
+	font: inherit;
+}
+
+.modal-dialog button {
+	min-height: 2.5rem;
+	padding: 0.5rem 0.85rem;
+	border: 1px solid #174d3b;
+	border-radius: 4px;
+	background: #174d3b;
+	color: #fff;
+	font: inherit;
+	cursor: pointer;
+}
+
+.modal-dialog .close-button,
+.modal-dialog .secondary-button {
+	border-color: #aab6af;
+	background: #fff;
+	color: #26332c;
+}
+
+.modal-dialog .danger-button {
+	border-color: #a32626;
+	background: #a32626;
+}
+
+.modal-dialog .close-button {
+	width: 2.5rem;
+	padding: 0;
+	font-size: 1.4rem;
+}
+
+.error-message {
+	margin: 0.25rem 0;
+	color: #a32626;
+}
+
+.modal-actions {
+	justify-content: flex-end;
+	margin-top: 0.75rem;
+}

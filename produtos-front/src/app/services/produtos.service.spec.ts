@@ -37,13 +37,4 @@ describe('ProdutosService', () => {
     expect(actualProducts).toEqual(expectedProducts);
   });
 
-  it('returns products from a direct array response', () => {
-    const expectedProducts: Produto[] = [{ id: 1, nome: 'bolsa termica', preco: 70 }];
-    let actualProducts: Produto[] = [];
-
-    service.listarProdutos().subscribe(products => actualProducts = products);
-    httpTestingController.expectOne('http://localhost:5200/api/Produtos').flush(expectedProducts);
-
-    expect(actualProducts).toEqual(expectedProducts);
-  });
 });

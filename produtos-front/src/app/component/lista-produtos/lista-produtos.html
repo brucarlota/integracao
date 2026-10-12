@@ -6,9 +6,8 @@
 	<h1>Lista de Produtos</h1>
 	<ul>
 		<li *ngFor="let produto of produtos()">
-			{{ produto.nome }} - R$ {{ produto.preco }}
-			<button type="button" (click)="removerProduto(produto.id)">Remover</button>
-			<button type="button" (click)="editarProduto(produto.id)">Editar</button>
+			{{ produto.nome.charAt(0).toUpperCase() + produto.nome.slice(1) }} - {{ produto.preco | currency:'BRL':'symbol':'1.2-2':'pt-BR' }}
+			<button type="button" (click)="detalharProduto(produto.id)">Detalhes</button>
 		</li>
 	</ul>
 </div>
@@ -16,3 +15,11 @@
 <div class="container" *ngIf="produtos().length === 0 && !erroCarregamento()">
 	<p>Nenhum produto encontrado.</p>
 </div>
+
+<app-modal
+	*ngIf="produtoSelecionado() as produto"
+	[produto]="produto"
+	(fechado)="fecharModal()"
+	(salvo)="produtoSalvo($event)"
+	(removido)="removerProduto($event)"
+></app-modal>
