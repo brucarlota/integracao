@@ -1,0 +1,17 @@
+<div class="container" *ngIf="erroCarregamento()">
+	<p>{{ erroCarregamento() }}</p>
+</div>
+
+<div class="container" *ngIf="produtos().length > 0 && !erroCarregamento()">
+	<h1>Lista de Produtos</h1>
+	<ul>
+		<li *ngFor="let produto of produtos()">
+			{{ produto.nome }} - R$ {{ produto.preco }}
+			<button type="button" (click)="removerProduto(produto.id)">Remover</button>
+		</li>
+	</ul>
+</div>
+
+<div class="container" *ngIf="produtos().length === 0 && !erroCarregamento()">
+	<p>Nenhum produto encontrado.</p>
+</div>
