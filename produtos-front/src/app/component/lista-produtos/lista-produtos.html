@@ -1,20 +1,25 @@
-<div class="container" *ngIf="erroCarregamento()">
-	<p>{{ erroCarregamento() }}</p>
-</div>
+<section class="list-section">
+	<header class="list-head">
+		<h2>Lista de produtos</h2>
+		<span class="count">{{ produtos().length }} {{ produtos().length === 1 ? 'item' : 'itens' }}</span>
+	</header>
 
-<div class="container" *ngIf="produtos().length > 0 && !erroCarregamento()">
-	<h1>Lista de Produtos</h1>
-	<ul>
+	<p class="load-error" *ngIf="erroCarregamento()">{{ erroCarregamento() }}</p>
+
+	<ul *ngIf="produtos().length > 0 && !erroCarregamento()">
 		<li *ngFor="let produto of produtos()">
-			{{ produto.nome.charAt(0).toUpperCase() + produto.nome.slice(1) }} - {{ produto.preco | currency:'BRL':'symbol':'1.2-2':'pt-BR' }}
-			<button type="button" (click)="detalharProduto(produto.id)">Detalhes</button>
+			<div class="product-info">
+				<span class="product-name">{{ produto.nome.charAt(0).toUpperCase() + produto.nome.slice(1) }}</span>
+				<span class="product-price">{{ produto.preco | currency:'BRL':'symbol':'1.2-2':'pt-BR' }}</span>
+			</div>
+			<button class="details-button" type="button" (click)="detalharProduto(produto.id)">Detalhes</button>
 		</li>
 	</ul>
-</div>
 
-<div class="container" *ngIf="produtos().length === 0 && !erroCarregamento()">
-	<p>Nenhum produto encontrado.</p>
-</div>
+	<p class="empty-state" *ngIf="produtos().length === 0 && !erroCarregamento()">
+		Nenhum produto encontrado.
+	</p>
+</section>
 
 <app-modal
 	*ngIf="produtoSelecionado() as produto"

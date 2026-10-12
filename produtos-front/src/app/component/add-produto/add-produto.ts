@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component, output, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Produto } from '../../models/produto.model';
 import { ProdutosService } from '../../services/produtos.service';
@@ -10,6 +10,8 @@ import { ProdutosService } from '../../services/produtos.service';
   templateUrl: './add-produto.html',
 })
 export class AddProduto {
+	produtoCriado = output<void>();
+
   novoProduto = signal<Produto>({
     id: 0,
     nome: '',
@@ -21,6 +23,7 @@ export class AddProduto {
   criarProduto(): void {
     this.produtosService.criarProduto(this.novoProduto()).subscribe(() => {
       this.novoProduto.set({ id: 0, nome: '', preco: 0 });
+      this.produtoCriado.emit();
     });
   }
 

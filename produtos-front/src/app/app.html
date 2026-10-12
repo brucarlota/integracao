@@ -1,2 +1,12 @@
-<app-add-produto></app-add-produto>
-<app-lista-produtos></app-lista-produtos>
+<main class="page-shell">
+	<header class="page-header">
+		<h1>Meus Produtos</h1>
+		<p>Cadastre e gerencie sua lista de produtos.</p>
+	</header>
+
+	<section class="form-panel" aria-label="Cadastro de produto">
+		<app-add-produto (produtoCriado)="atualizarListaProdutos()"></app-add-produto>
+	</section>
+
+	<app-lista-produtos></app-lista-produtos>
+</main>

@@ -1,1 +1,40 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+	--page-color: #f4f5f9;
+	--surface-color: #fff;
+	--text-color: #1c1e2b;
+	--muted-color: #6b7085;
+	--line-color: #e6e8f0;
+	--accent-color: #5b5fef;
+	--accent-hover-color: #4a4ed8;
+	--accent-soft-color: #eef0ff;
+	--danger-color: #c9373d;
+	--danger-soft-color: #fdecec;
+	box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+	box-sizing: inherit;
+}
+
+html {
+	min-width: 320px;
+	min-height: 100%;
+	background: var(--page-color);
+}
+
+body {
+	min-width: 320px;
+	min-height: 100vh;
+	margin: 0;
+	background: var(--page-color);
+	color: var(--text-color);
+	font-family: Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
+	line-height: 1.4;
+}
+
+button,
+input {
+	font: inherit;
+}

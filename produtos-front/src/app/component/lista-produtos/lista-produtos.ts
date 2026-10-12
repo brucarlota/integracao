@@ -18,7 +18,7 @@ export class ListaProdutos implements OnInit {
 	constructor(private produtosService: ProdutosService) { }
 
 	ngOnInit(): void {
-		this.carregarProdutos();
+		this.atualizarLista();
 	}
 
 	removerProduto(id: number): void {
@@ -35,7 +35,7 @@ export class ListaProdutos implements OnInit {
 		});
 	}
 
-	private carregarProdutos(): void {
+	atualizarLista(): void {
 		this.produtosService.listarProdutos().subscribe({
 		next: produtos => {
 			this.produtos.set(produtos);

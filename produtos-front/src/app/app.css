@@ -1,0 +1,41 @@
+:host {
+	display: block;
+	min-height: 100dvh;
+}
+
+.page-shell {
+	width: min(100%, 600px);
+	margin: 0 auto;
+	padding: 40px 20px 60px;
+}
+
+.page-header h1 {
+	margin: 0 0 4px;
+	color: var(--text-color);
+	font-size: 1.7rem;
+	font-weight: 700;
+}
+
+.page-header p {
+	margin: 0 0 28px;
+	color: var(--muted-color);
+	font-size: 0.95rem;
+}
+
+.form-panel {
+	padding: 20px;
+	border: 1px solid var(--line-color);
+	border-radius: 14px;
+	background: var(--surface-color);
+	box-shadow: 0 4px 18px rgb(20 20 60 / 5%);
+}
+
+@media (max-width: 420px) {
+	.page-shell {
+		padding: 28px 16px 40px;
+	}
+
+	.form-panel {
+		padding: 16px;
+	}
+}

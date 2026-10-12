@@ -1,0 +1,65 @@
+.add-produto-container h2 {
+	margin: 0 0 14px;
+	font-size: 1rem;
+	font-weight: 600;
+}
+
+.add-produto-container form {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr) 130px;
+	gap: 12px;
+}
+
+.add-produto-container label {
+	display: flex;
+	min-width: 0;
+	flex-direction: column;
+	gap: 6px;
+	color: var(--muted-color);
+	font-size: 0.8rem;
+	font-weight: 500;
+}
+
+.add-produto-container input {
+	width: 100%;
+	min-height: 42px;
+	padding: 10px 12px;
+	border: 1px solid var(--line-color);
+	border-radius: 8px;
+	outline: none;
+	background: var(--page-color);
+	color: var(--text-color);
+	transition: border-color 150ms ease, box-shadow 150ms ease;
+}
+
+.add-produto-container input:focus {
+	border-color: var(--accent-color);
+	box-shadow: 0 0 0 3px var(--accent-soft-color);
+}
+
+.form-actions {
+	display: flex;
+	grid-column: 1 / -1;
+}
+
+.form-actions button {
+	width: 100%;
+	min-height: 42px;
+	border: 0;
+	border-radius: 8px;
+	background: var(--accent-color);
+	color: #fff;
+	font-weight: 600;
+	cursor: pointer;
+	transition: background 150ms ease;
+}
+
+.form-actions button:hover {
+	background: var(--accent-hover-color);
+}
+
+@media (max-width: 420px) {
+	.add-produto-container form {
+		grid-template-columns: minmax(0, 1fr);
+	}
+}

@@ -1,8 +1,12 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { registerLocaleData } from '@angular/common';
+import localePtBr from '@angular/common/locales/pt';
 import { of } from 'rxjs';
 import { Produto } from '../../models/produto.model';
 import { ProdutosService } from '../../services/produtos.service';
 import { Modal } from './modal';
+
+registerLocaleData(localePtBr, 'pt-BR');
 
 describe('Modal', () => {
   let component: Modal;
@@ -35,7 +39,7 @@ describe('Modal', () => {
     const element = fixture.nativeElement as HTMLElement;
 
     expect(element.querySelector('input')).toBeNull();
-    expect(element.textContent).toContain('bolsa termica');
+    expect(element.textContent).toContain('Bolsa termica');
     expect(element.textContent).toContain('Editar ou remover produto');
     expect(element.textContent).not.toContain('Salvar alteracoes');
 
