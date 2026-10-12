@@ -1,0 +1,5 @@
+<div class="produto-detalhe-container" *ngIf="produto() as item">
+	<h2>Detalhes do Produto</h2>
+	<p><strong>Nome:</strong> {{ item.nome }}</p>
+	<p><strong>Preço:</strong> R$ {{ item.preco }}</p>
+</div>
